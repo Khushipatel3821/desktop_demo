@@ -3,7 +3,14 @@ import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
 class TrayService with TrayListener {
+  // Singleton instance
+  static final TrayService _instance = TrayService._internal();
   bool _isInitialized = false;
+
+  factory TrayService() {
+    return _instance;
+  }
+  TrayService._internal();
 
   Future<void> initTray() async {
     if (_isInitialized) return;
